@@ -1,0 +1,19 @@
+{
+  "signIn": "Sign in",
+  "registrationDescription":"Hey, Enter your details to login\nto your account",
+  "google":"Google",
+  "appleId":"Apple ID",
+  "facebook":"Facebook",
+  "orSignWith": "Or Sign in with",
+  "requiredField": "Поле обязательно для заполнения",
+  "writeTheCorrectEmailAddressOrPhoneNumber": "Напишите правильный адрес электронной почты или номер телефона",
+  "clickToAdd": "Кошуу үчүн {addVerbs} баскычын басыңыз",
+  "@clickToAdd": {
+    "description": "A message",
+    "placeholders": {
+      "addVerbs": {
+        "type": "String"
+      }
+    }
+  }
+}
