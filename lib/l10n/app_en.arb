@@ -7,6 +7,9 @@
   "orSignWith": "Or Sign in with",
   "requiredField": "Поле обязательно для заполнения",
   "writeTheCorrectEmailAddressOrPhoneNumber": "Напишите правильный адрес электронной почты или номер телефона",
+  "loginAnonymously":"Login Anonymously",
+
+  
   "clickToAdd": "Кошуу үчүн {addVerbs} баскычын басыңыз",
   "@clickToAdd": {
     "description": "A message",

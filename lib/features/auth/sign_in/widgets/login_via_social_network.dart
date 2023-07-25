@@ -7,35 +7,40 @@ class CustomLoginViaSocialNetworkWidget extends StatelessWidget {
     super.key,
     required this.icon,
     required this.title,
+    required this.onTap,
   });
 
   final AppIcons icon;
   final String title;
+  final Function() onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 120,
-      height: 40,
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: const Color(0xFF000000),
+    return InkWell(
+      onTap: () => onTap.call(),
+      child: Container(
+        width: 120,
+        height: 40,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: const Color(0xFF000000),
+          ),
         ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          AppIcon(icon),
-          const Gap(8),
-          Text(
-            title,
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
-          )
-        ],
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            AppIcon(icon),
+            const Gap(8),
+            Text(
+              title,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

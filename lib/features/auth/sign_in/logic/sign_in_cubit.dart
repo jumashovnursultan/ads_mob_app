@@ -7,34 +7,35 @@ part 'sign_in_cubit.freezed.dart';
 enum SignInStatus {
   idle,
   error,
-  success,
-  userNotFound,
   loading;
 
-  bool get isSuccess => this == success;
   bool get isError => this == error;
   bool get isLoading => this == loading;
   bool get isIdle => this == idle;
-  bool get isNotFound => this == userNotFound;
 }
 
 class SignInCubit extends Cubit<SignInState> {
   SignInCubit() : super(const SignInState());
 
   void signIn(String email, String password) async {
+    emit(state.copyWith(status: SignInStatus.loading));
     try {
-      UserCredential userCredential =
-          await FirebaseAuth.instance.signInWithEmailAndPassword(
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
     } on FirebaseAuthException catch (e) {
+      emit(state.copyWith(status: SignInStatus.error));
       if (e.code == 'user-not-found') {
-        print('No user found for that email.');
+        emit(state.copyWith(error: 'user-not-found'));
       } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
+        emit(state.copyWith(error: 'wrong-password'));
       }
     }
+  }
+
+  void signInAnonymously() async {
+    await FirebaseAuth.instance.signInAnonymously();
   }
 }
 
@@ -42,5 +43,6 @@ class SignInCubit extends Cubit<SignInState> {
 class SignInState with _$SignInState {
   const factory SignInState({
     @Default(SignInStatus.idle) final SignInStatus status,
+    final String? error,
   }) = _SignInState;
 }

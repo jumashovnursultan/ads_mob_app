@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SignInState {
   SignInStatus get status => throw _privateConstructorUsedError;
+  String? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SignInStateCopyWith<SignInState> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $SignInStateCopyWith<$Res> {
           SignInState value, $Res Function(SignInState) then) =
       _$SignInStateCopyWithImpl<$Res, SignInState>;
   @useResult
-  $Res call({SignInStatus status});
+  $Res call({SignInStatus status, String? error});
 }
 
 /// @nodoc
@@ -46,12 +47,17 @@ class _$SignInStateCopyWithImpl<$Res, $Val extends SignInState>
   @override
   $Res call({
     Object? status = null,
+    Object? error = freezed,
   }) {
     return _then(_value.copyWith(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as SignInStatus,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -64,7 +70,7 @@ abstract class _$$_SignInStateCopyWith<$Res>
       __$$_SignInStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({SignInStatus status});
+  $Res call({SignInStatus status, String? error});
 }
 
 /// @nodoc
@@ -79,12 +85,17 @@ class __$$_SignInStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
+    Object? error = freezed,
   }) {
     return _then(_$_SignInState(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as SignInStatus,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -92,15 +103,17 @@ class __$$_SignInStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_SignInState implements _SignInState {
-  const _$_SignInState({this.status = SignInStatus.idle});
+  const _$_SignInState({this.status = SignInStatus.idle, this.error});
 
   @override
   @JsonKey()
   final SignInStatus status;
+  @override
+  final String? error;
 
   @override
   String toString() {
-    return 'SignInState(status: $status)';
+    return 'SignInState(status: $status, error: $error)';
   }
 
   @override
@@ -108,11 +121,12 @@ class _$_SignInState implements _SignInState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SignInState &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status);
+  int get hashCode => Object.hash(runtimeType, status, error);
 
   @JsonKey(ignore: true)
   @override
@@ -122,10 +136,13 @@ class _$_SignInState implements _SignInState {
 }
 
 abstract class _SignInState implements SignInState {
-  const factory _SignInState({final SignInStatus status}) = _$_SignInState;
+  const factory _SignInState({final SignInStatus status, final String? error}) =
+      _$_SignInState;
 
   @override
   SignInStatus get status;
+  @override
+  String? get error;
   @override
   @JsonKey(ignore: true)
   _$$_SignInStateCopyWith<_$_SignInState> get copyWith =>

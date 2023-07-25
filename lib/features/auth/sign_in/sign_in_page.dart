@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:ads_mobile_app/features/auth/sign_in/logic/sign_in_cubit.dart';
 import 'package:ads_mobile_app/features/auth/sign_in/widgets/custom_divider.dart';
 import 'package:ads_mobile_app/features/auth/sign_in/widgets/login_via_social_network.dart';
@@ -48,21 +50,63 @@ class SignInPage extends HookConsumerWidget {
                     ),
                   ),
                   const Gap(32),
-                  TextFormField(
-                    validator: (input) {
-                      if (input == null || input.isEmpty) {
-                        return AppLocalizations.of(context)!.requiredField;
-                      }
+                  BlocBuilder<SignInCubit, SignInState>(
+                    builder: (context, state) {
+                      return TextFormField(
+                        controller: emailController,
+                        validator: (input) {
+                          if (input == null || input.isEmpty) {
+                            return AppLocalizations.of(context)!.requiredField;
+                          }
 
-                      return null;
+                          return null;
+                        },
+                        decoration: InputDecoration(
+                          hintText: 'Enter Email',
+                          errorBorder:
+                              state.error == 'No user found for that email.'
+                                  ? OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                      borderSide:
+                                          const BorderSide(color: Colors.red),
+                                    )
+                                  : null,
+                          errorText:
+                              state.error == 'No user found for that email.'
+                                  ? 'No user found for that email.'
+                                  : null,
+                        ),
+                      );
                     },
-                    decoration: const InputDecoration(
-                        hintText: 'Enter Email / Phone No'),
                   ),
                   const Gap(12),
-                  TextFormField(
-                    controller: passwordController,
-                    decoration: const InputDecoration(hintText: 'Passcode'),
+                  BlocBuilder<SignInCubit, SignInState>(
+                    builder: (context, state) {
+                      return TextFormField(
+                        validator: (input) {
+                          if (input == null || input.isEmpty) {
+                            return AppLocalizations.of(context)!.requiredField;
+                          }
+
+                          return null;
+                        },
+                        controller: passwordController,
+                        decoration: InputDecoration(
+                          hintText: 'Passcode',
+                          errorBorder: state.error ==
+                                  'Wrong password provided for that user.'
+                              ? OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  borderSide:
+                                      const BorderSide(color: Colors.red),
+                                )
+                              : null,
+                          errorText: state.error == 'wrong-password'
+                              ? 'Wrong password provided for that user.'
+                              : null,
+                        ),
+                      );
+                    },
                   ),
                   const Gap(16),
                   Align(
@@ -92,10 +136,13 @@ class SignInPage extends HookConsumerWidget {
                         onPressed: () {
                           final isValid = formKey.currentState!.validate();
                           if (!isValid) return;
+                          // signIn(emailController.text, passwordController.text);
                           context.read<SignInCubit>().signIn(
                               emailController.text, passwordController.text);
                         },
-                        child: Text(AppLocalizations.of(context)!.signIn),
+                        child: state.status.isLoading
+                            ? const CircularProgressIndicator.adaptive()
+                            : Text(AppLocalizations.of(context)!.signIn),
                       );
                     },
                   ),
@@ -120,22 +167,26 @@ class SignInPage extends HookConsumerWidget {
                     child: Row(
                       children: [
                         CustomLoginViaSocialNetworkWidget(
+                          onTap: () {},
                           title: AppLocalizations.of(context)!.google,
                           icon: AppIcons.google_logo,
                         ),
-                        const Gap(8),
-                        CustomLoginViaSocialNetworkWidget(
-                          title: AppLocalizations.of(context)!.appleId,
-                          icon: AppIcons.apple_logo,
-                        ),
-                        const Gap(8),
-                        CustomLoginViaSocialNetworkWidget(
-                          title: AppLocalizations.of(context)!.facebook,
-                          icon: AppIcons.facebook_logo,
-                        ),
-                        const Gap(8),
+                        if (Platform.isIOS) ...[
+                          const Gap(8),
+                          CustomLoginViaSocialNetworkWidget(
+                            onTap: () {},
+                            title: AppLocalizations.of(context)!.appleId,
+                            icon: AppIcons.apple_logo,
+                          ),
+                        ],
                       ],
                     ),
+                  ),
+                  const SizedBox(height: 20),
+                  TextButton(
+                    onPressed: () =>
+                        context.read<SignInCubit>().signInAnonymously(),
+                    child: Text(AppLocalizations.of(context)!.loginAnonymously),
                   ),
                   const Gap(32),
                   Align(

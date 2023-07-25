@@ -56,7 +56,7 @@ class AppTheme {
           ..greyLightColor = const Color.fromRGBO(248, 248, 248, 1)
           ..softBlackColor = const Color.fromRGBO(36, 36, 36, 0.64)
           ..greySoftColor = const Color.fromRGBO(245, 245, 245, 1)
-          ..primaryColor = const Color(0xFFAED6B3)
+          ..primaryColor = const Color.fromARGB(255, 58, 137, 68)
           ..onPrimaryColor = const Color(0xFFFFFFFF)
           ..primaryTintColor = const Color(0x3053B175)
           ..accentColor = const Color(0xFFD0103F)
@@ -151,28 +151,31 @@ class AppTheme {
       ),
       iconTheme: IconThemeData(color: iconColor),
       inputDecorationTheme: InputDecorationTheme(
-        contentPadding: const EdgeInsets.only(left: 12, right: 25),
-        hintStyle: const TextStyle(
-          fontSize: 13,
-          color: Color(0xFF797979),
-          fontWeight: FontWeight.w400,
-        ),
-        fillColor: greyLightColor,
-        filled: true,
-        errorStyle: const TextStyle(fontSize: 12, color: Colors.redAccent),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(18),
-          borderSide: BorderSide(color: greyColor),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: const BorderSide(color: Color(0xFF5D5D5D)),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: const BorderSide(color: Color(0xFF5D5D5D)),
-        ),
-      ),
+          contentPadding: const EdgeInsets.only(left: 12, right: 25),
+          hintStyle: const TextStyle(
+            fontSize: 13,
+            color: Color(0xFF797979),
+            fontWeight: FontWeight.w400,
+          ),
+          fillColor: greyLightColor,
+          filled: true,
+          errorStyle: const TextStyle(fontSize: 12, color: Colors.redAccent),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(color: greyColor),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: const BorderSide(color: Color(0xFF5D5D5D)),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: const BorderSide(color: Color(0xFF5D5D5D)),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: const BorderSide(color: Colors.red),
+          )),
       // buttonColor: primaryColor,
       primaryColor: primaryColor,
       // highlightColor: shift(Colors.grey.shade400, .1),
