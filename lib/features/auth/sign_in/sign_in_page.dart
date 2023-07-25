@@ -16,7 +16,6 @@ class SignInPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    
     final formKey = useMemoized(() => GlobalKey<FormState>());
     final emailController = useTextEditingController();
     final passwordController = useTextEditingController();
@@ -62,6 +61,7 @@ class SignInPage extends HookConsumerWidget {
                   ),
                   const Gap(12),
                   TextFormField(
+                    controller: passwordController,
                     decoration: const InputDecoration(hintText: 'Passcode'),
                   ),
                   const Gap(16),
