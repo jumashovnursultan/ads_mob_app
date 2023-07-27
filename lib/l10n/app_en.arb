@@ -5,10 +5,16 @@
   "google":"Google",
   "appleId":"Apple ID",
   "facebook":"Facebook",
-  "orSignWith": "Or Sign in with",
-  "requiredField": "Поле обязательно для заполнения",
+  "orSignInWith": "Or Sign in with",
+  "orSignUpWith": "Or Sign up with",
+
+  "requiredField": "Required field",
   "writeTheCorrectEmailAddressOrPhoneNumber": "Напишите правильный адрес электронной почты или номер телефона",
   "loginAnonymously":"Login Anonymously",
+    "mustBeMoreThan6Character": "Must be more than 6 characters",
+  "passwordWrong": "Password mismatch",
+
+
 
   
   "clickToAdd": "Кошуу үчүн {addVerbs} баскычын басыңыз",

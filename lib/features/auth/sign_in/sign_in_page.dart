@@ -116,7 +116,13 @@ class SignInPage extends HookConsumerWidget {
                         text: 'Don’t have an account yet?',
                         children: [
                           TextSpan(
-                            recognizer: TapGestureRecognizer()..onTap = () {},
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const SignUpPage(),
+                                    ),
+                                  ),
                             text: ' Register now!',
                             style: const TextStyle(
                               color: Color(0xFF000000),
@@ -157,7 +163,7 @@ class SignInPage extends HookConsumerWidget {
                     children: [
                       const CustomDivider(),
                       Text(
-                        AppLocalizations.of(context)!.orSignWith,
+                        AppLocalizations.of(context)!.orSignInWith,
                         style: const TextStyle(color: Colors.black),
                       ),
                       const CustomDivider(),
