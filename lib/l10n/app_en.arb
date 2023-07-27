@@ -1,5 +1,6 @@
 {
   "signIn": "Sign in",
+  "signUp": "Sign up",
   "registrationDescription":"Hey, Enter your details to login\nto your account",
   "google":"Google",
   "appleId":"Apple ID",
