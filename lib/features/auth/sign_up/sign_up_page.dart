@@ -31,12 +31,11 @@ class SignUpPage extends HookConsumerWidget {
         child: BlocConsumer<SignUpCubit, SignUpState>(
           listener: (context, state) {
             if (state.status.isSuccess) {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const HomePage(),
-                ),
-              );
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                    builder: (context) => const HomePage(),
+                  ),
+                  (Route<dynamic> route) => false);
             }
           },
           builder: (context, state) {
