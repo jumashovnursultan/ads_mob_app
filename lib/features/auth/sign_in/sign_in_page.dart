@@ -185,7 +185,7 @@ class SignInPage extends HookConsumerWidget {
                               const Gap(8),
                               CustomLoginViaSocialNetworkWidget(
                                 onTap: () =>
-                                    context.read<SignInCubit>().googleLogin(),
+                                    context.read<SignInCubit>().signInAppleId(),
                                 title: AppLocalizations.of(context)!.appleId,
                                 icon: AppIcons.apple_logo,
                               ),

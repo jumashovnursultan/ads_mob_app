@@ -63,7 +63,7 @@ class SignInCubit extends Cubit<SignInState> {
     final idToken = (await userCredential.user?.getIdToken(true))!;
   }
 
-  Future<void> signInApple() async {
+  Future<void> signInAppleId() async {
     try {
       final appleCredential = await SignInWithApple.getAppleIDCredential(
         scopes: [
