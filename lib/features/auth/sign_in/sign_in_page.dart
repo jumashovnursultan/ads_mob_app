@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:ads_mobile_app/features/auth/restore_password/restore_password_page.dart';
 import 'package:ads_mobile_app/features/auth/sign_in/logic/sign_in_cubit.dart';
 import 'package:ads_mobile_app/features/auth/sign_in/widgets/custom_divider.dart';
 import 'package:ads_mobile_app/features/auth/sign_in/widgets/login_via_social_network.dart';
@@ -64,7 +65,8 @@ class SignInPage extends HookConsumerWidget {
                         },
                         decoration: InputDecoration(
                           hintText: 'Enter Email',
-                          errorBorder: state.error == 'user-not-found'
+                          errorBorder: state.error == 'invalid-email' ||
+                                  state.error == 'user-not-found'
                               ? OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(8),
                                   borderSide:
@@ -73,7 +75,9 @@ class SignInPage extends HookConsumerWidget {
                               : null,
                           errorText: state.error == 'user-not-found'
                               ? 'No user found for that email.'
-                              : null,
+                              : state.error == 'invalid-email'
+                                  ? 'invalid-email'
+                                  : null,
                         ),
                       );
                     },
@@ -105,6 +109,25 @@ class SignInPage extends HookConsumerWidget {
                         ),
                       );
                     },
+                  ),
+                  const Gap(5),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: GestureDetector(
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const RestorePasswordPage(),
+                        ),
+                      ),
+                      child: const Text(
+                        'Forgot password?  ',
+                        style: TextStyle(
+                            color: Color(0xFF000000),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 12),
+                      ),
+                    ),
                   ),
                   const Gap(16),
                   Align(

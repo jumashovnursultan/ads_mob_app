@@ -36,6 +36,8 @@ class SignInCubit extends Cubit<SignInState> {
         emit(state.copyWith(error: 'user-not-found'));
       } else if (e.code == 'wrong-password') {
         emit(state.copyWith(error: 'wrong-password'));
+      } else if (e.code == 'invalid-email') {
+        emit(state.copyWith(error: 'invalid-email'));
       }
     }
   }
