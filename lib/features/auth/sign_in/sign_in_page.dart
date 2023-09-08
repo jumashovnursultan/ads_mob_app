@@ -200,19 +200,19 @@ class SignInPage extends HookConsumerWidget {
                           children: [
                             CustomLoginViaSocialNetworkWidget(
                               onTap: () =>
-                                  context.read<SignInCubit>().googleLogin(),
+                                  context.read<SignInCubit>().googleSignIn(),
                               title: AppLocalizations.of(context)!.google,
                               icon: AppIcons.google_logo,
                             ),
-                            if (Platform.isIOS) ...[
-                              const Gap(8),
-                              CustomLoginViaSocialNetworkWidget(
-                                onTap: () =>
-                                    context.read<SignInCubit>().signInAppleId(),
-                                title: AppLocalizations.of(context)!.appleId,
-                                icon: AppIcons.apple_logo,
-                              ),
-                            ],
+                            // if (Platform.isIOS) ...[
+                            //   const Gap(8),
+                            //   CustomLoginViaSocialNetworkWidget(
+                            //     onTap: () =>
+                            //         context.read<SignInCubit>().appleIdSignIn(),
+                            //     title: AppLocalizations.of(context)!.appleId,
+                            //     icon: AppIcons.apple_logo,
+                            //   ),
+                            // ],
                           ],
                         ),
                       );
